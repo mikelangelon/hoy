@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, ScrollView } from "react-native";
 import { createTask } from "./helpers/tasks";
 import { styles } from "./styles";
 
@@ -9,18 +9,18 @@ export default function Main() {
   const [tasks, setTasks] = useState({});
 
   const addTask = () => {
-    if (newTask !== "") {
-      const taskObject = createTask(newTask);
-      setNewTask("");
-      setTasks((prevState) => {
-        const newTasks = {
-          ...prevState,
-          ...taskObject,
-        };
-        console.log("current list of tasks" + JSON.stringify(newTasks));
-        return { ...newTasks };
-      });
+    if (newTask == "") {
+      return;
     }
+    const taskObject = createTask(newTask);
+    setNewTask("");
+    setTasks((prevState) => {
+      const newTasks = {
+        ...prevState,
+        ...taskObject,
+      };
+      return { ...newTasks };
+    });
   };
   return (
     <View style={styles.container}>
@@ -35,6 +35,11 @@ export default function Main() {
         returnKeyType={"done"}
       />
 
+      <ScrollView>
+        {Object.values(tasks).map((task) => (
+          <div>{task.text}</div>
+        ))}
+      </ScrollView>
       <StatusBar style="auto" />
     </View>
   );
