@@ -17,4 +17,7 @@ export const styles = StyleSheet.create({
         textAlign: "left",
         alignSelf: 'flex-start'
       },
+      button: {
+        marginVertical: 15,
+      },
 });

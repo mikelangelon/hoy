@@ -23,6 +23,9 @@ export default function Main() {
       return { ...newTasks };
     });
   };
+  const deleteTask = id => {
+    console.log(id);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.appTitle}>Tasker</Text>
@@ -37,7 +40,9 @@ export default function Main() {
       />
 
       <ScrollView>
-        {Object.values(tasks).map(t => <Task task={t} />)}
+        {Object.values(tasks).map(
+          t => <Task key={t.id} task={t} deleteTask={deleteTask}/>
+        )}
       </ScrollView>
       <StatusBar style="auto" />
     </View>
