@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Text, TextInput, View, ScrollView } from "react-native";
+import Task from "./components/Task";
 import { createTask } from "./helpers/tasks";
 import { styles } from "./styles";
 
@@ -36,9 +37,7 @@ export default function Main() {
       />
 
       <ScrollView>
-        {Object.values(tasks).map((task) => (
-          <div>{task.text}</div>
-        ))}
+        {Object.values(tasks).map(t => <Task task={t} />)}
       </ScrollView>
       <StatusBar style="auto" />
     </View>
