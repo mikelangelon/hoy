@@ -24,7 +24,11 @@ export default function Main() {
     });
   };
   const deleteTask = id => {
-    console.log(id);
+    setTasks(() => {
+      delete tasks[id];
+      return { ...tasks };
+    });
+    return { ... tasks}
   };
   return (
     <View style={styles.container}>
